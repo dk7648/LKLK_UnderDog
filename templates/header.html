@@ -1,0 +1,19 @@
+
+    <div class="LKLK_header">
+        <div>
+            <a href="{% url 'projectapp:list' %}" >
+                <h1>LKLK</h1>
+            </a>
+        </div>
+        <div class="jihyun_header_navbar">
+            {% if not user.is_authenticated %}
+            <a href="{% url 'accountapp:login' %}?next={{ request.path }}" class="LKLK_header_nav">
+                <span>login</span>
+            </a>
+            {% else %}
+            <a href="{% url 'accountapp:detail' pk=user.pk %}" class="LKLK_header_nav">
+                <span>MyPage</span>
+            </a>
+            {% endif %}
+        </div>
+    </div>
