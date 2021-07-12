@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load bootstrap4 %}
+
 {% block content %}
 <div>
     <div style="text-align:center; max-width:500px; margin: 4rem auto">
@@ -8,12 +9,23 @@
            {{target_project.title}}
        </h1>
 
-        <img src="{{target_project.image.url}}" alt="">
-        <img src="{{target_project.image2.url}}" alt="">
-        <img src="{{target_project.image3.url}}" alt="">
-        <p>
+<!--        글쓴이의 Mypage로 가도록 링크-->
+            <h4>
+                <img src="{{ target_project.writer.profile.image.url }}" alt=""
+                     style="height: 3rem; width: 3rem; border-radius: 10rem; object-fit: cover;">
+
+                {{ target_project.writer.profile.nickname }}
+            </h4>
+
+        <hr>
+        <h5>
             {{target_project.content}}
-        </p>
+        </h5>
+
+        <img src="{{target_project.image.url}}" alt=""  class="container">
+        <img src="{{target_project.image2.url}}" alt=""  class="container">
+        <img src="{{target_project.image3.url}}" alt=""  class="container">
+
         {% if target_project.writer == user %}
         <a href="{% url 'projectapp:update' pk=target_project.pk %}">
             <p>Update Project</p>
@@ -24,7 +36,7 @@
         {% endif %}
 
         <a href="{% url 'projectapp:list' %}">
-            <p>list</p>
+            <p>다른 프로젝트 보기</p>
         </a>
     </div>
 </div>
