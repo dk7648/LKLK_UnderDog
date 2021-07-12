@@ -10,12 +10,14 @@
        </h1>
 
 <!--        글쓴이의 Mypage로 가도록 링크-->
+        <a href="{% url 'accountapp:detail' pk=target_project.writer.pk %}" >
             <h4>
                 <img src="{{ target_project.writer.profile.image.url }}" alt=""
                      style="height: 3rem; width: 3rem; border-radius: 10rem; object-fit: cover;">
 
                 {{ target_project.writer.profile.nickname }}
             </h4>
+        </a>
 
         <hr>
         <h5>
