@@ -21,3 +21,13 @@
 .LKLK_header_navbar{
     margin: 1rem 0;
 }
+
+.LKLK_login_nav {
+    margin: 0 0.5rem;
+}
+
+.LKLK_login_navbar {
+    margin: 0 0.5rem;
+    margin-bottom: 1rem;
+    font-size: .5rem;
+}
