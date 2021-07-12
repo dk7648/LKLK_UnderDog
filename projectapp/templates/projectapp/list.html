@@ -15,14 +15,26 @@
     <div class="container">
        {% for project in project_list %}
       <a href="{% url 'projectapp:detail' pk=project.pk %}">
-        <h3>
-        {{ project.title }}
-        </h3>
-        <h5>
-          {{ project.content | safe }}
-        </h5>
+        <div>
+            <h3>
+          {{ project.title }}
+          </h3>
+        </div>
+        <div>
+          <h5>
+            {{ project.content | safe }}
+          </h5>
+        </div>
+
         {% include 'snippets/card.html' with project=project %}
+
+        <div>
+          <h6>
+            join
+          </h6>
+        </div>
       </a>
+      <hr>
       {% endfor %}
     </div>
 
