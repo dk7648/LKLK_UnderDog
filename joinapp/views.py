@@ -12,8 +12,10 @@ from projectapp.models import Project
 
 @method_decorator(login_required, 'get')
 class JoinView(RedirectView):
+
+    #projectapp의 detail에서 join버튼을 누르므로 detail의 pk를 넘겨받아 버튼을 누르면 다시 그 페이지로로
     def get_redirect_url(self, *args, **kwargs):
-        return reverse('projectapp:detail', kwargs={'pk':self.request.GET.get('project_pk')})
+        return reverse('projectapp:detail', kwargs={'pk': self.request.GET.get('project_pk')})
 
     def get(self, request, *args, **kwargs):
         project = get_object_or_404(Project, pk=self.request.GET.get('project_pk'))

@@ -5,8 +5,9 @@ from django.urls import reverse, reverse_lazy
 from django.utils.decorators import method_decorator
 from django.views.generic import CreateView, DetailView, UpdateView, DeleteView, ListView
 from django.views.generic.edit import FormMixin
+from django.views.generic.list import MultipleObjectMixin
 
-
+from joinapp.models import Join
 from projectapp.decorators import project_ownership_required
 from projectapp.forms import ProjectCreationForm
 from projectapp.models import Project
@@ -32,6 +33,17 @@ class ProjectDetailView(DetailView):
     model = Project
     context_object_name = 'target_project'
     template_name = 'projectapp/detail.html'
+
+    def get_context_data(self, **kwargs):
+        project = self.object
+        user = self.request.user
+
+        if user.is_authenticated:
+            join = Join.objects.filter(user=user, project=project)
+        else:
+            join = None
+
+        return super(ProjectDetailView, self).get_context_data(join=join, **kwargs)
 
 
 @method_decorator(project_ownership_required, 'get')
