@@ -1,5 +1,3 @@
-from profile import Profile
-
 from django.shortcuts import render
 
 # Create your views here.
@@ -9,6 +7,7 @@ from django.views.generic import CreateView, UpdateView
 
 from profileapp.decorators import profile_ownership_required
 from profileapp.forms import ProfileCreationForm
+from profileapp.models import Profile
 
 
 class ProfileCreateView(CreateView):

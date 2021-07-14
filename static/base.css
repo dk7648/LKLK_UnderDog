@@ -31,3 +31,23 @@
     margin-bottom: 1rem;
     font-size: .5rem;
 }
+
+.container {
+      padding: 0;
+      margin: 0, auto;
+}
+
+.container a {
+      width: 45%;
+      max-width: 250px;
+}
+
+.container div {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+}
+
+.container img {
+    width: 40%;
+}

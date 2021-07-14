@@ -37,13 +37,13 @@ class ProjectDetailView(DetailView):
     def get_context_data(self, **kwargs):
         project = self.object
         user = self.request.user
-
+        join_list = Join.objects.all()
         if user.is_authenticated:
             join = Join.objects.filter(user=user, project=project)
         else:
             join = None
 
-        return super(ProjectDetailView, self).get_context_data(join=join, **kwargs)
+        return super(ProjectDetailView, self).get_context_data(join_list=join_list, join=join, **kwargs)
 
 
 @method_decorator(project_ownership_required, 'get')

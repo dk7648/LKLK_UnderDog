@@ -11,6 +11,7 @@ from django.views.generic.list import MultipleObjectMixin
 
 from accountapp.decorators import account_ownership_required
 from accountapp.forms import AccountUpdateForm
+from joinapp.models import Join
 from projectapp.models import Project
 from projectapp.views import ProjectDetailView
 
@@ -30,11 +31,9 @@ class AccountDetailView(DetailView, MultipleObjectMixin):
 
     def get_context_data(self, **kwargs):
         object_list = Project.objects.filter(writer=self.get_object())
-        return super(AccountDetailView, self).get_context_data(object_list=object_list, **kwargs)
-
-
-def hello(request):
-    return render(request, 'accountapp/hello.html')
+        join_list = Join.objects.all()
+        return super(AccountDetailView, self).get_context_data(object_list=object_list,
+                                                               join_list=join_list, **kwargs)
 
 
 @method_decorator(has_ownership, 'get')
@@ -54,3 +53,6 @@ class AccountDeleteView(DeleteView):
     context_object_name = 'target_user'
     success_url = reverse_lazy('accountapp:login')
     template_name = 'accountapp/delete.html'
+
+def hello(request):
+    return render(request, 'accountapp/hello.html')
