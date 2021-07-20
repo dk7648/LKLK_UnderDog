@@ -55,6 +55,12 @@ INSTALLED_APPS = [
     'profileapp',
     'projectapp',
     'joinapp',
+
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',  # 가입한 계정 관리
+    'allauth.socialaccount',  # 소셜 계정으로 가입한 계정 관리
+    'allauth.socialaccount.providers.google',  # 어떤 소셜 서비스를 사용하는지 추가
 ]
 
 MIDDLEWARE = [
@@ -72,7 +78,7 @@ ROOT_URLCONF = 'LKLK.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')],
+        'DIRS': [os.path.join(BASE_DIR, 'templates'), BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -157,3 +163,23 @@ MEDIA_URL = '/media/'
 
 #파일을 올리면 저장되는 공간
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+
+#google social login
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+)
+SITE_ID = 3
+
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        'SCOPE': [
+            'profile',
+            'email',
+        ],
+        'AUTH_PARAMS': {
+            'access_type': 'online',
+        }
+    }
+}
