@@ -56,3 +56,15 @@ class AccountDeleteView(DeleteView):
 
 def hello(request):
     return render(request, 'accountapp/hello.html')
+
+
+class AccountJoinView(DetailView, MultipleObjectMixin):
+    model = User
+    context_object_name = 'target_user'
+    template_name = 'accountapp/join.html'
+
+    def get_context_data(self, **kwargs):
+        object_list = Project.objects.filter(writer=self.get_object())
+        join_list = Join.objects.all()
+        return super(AccountJoinView, self).get_context_data(object_list=object_list,
+                                                               join_list=join_list, **kwargs)

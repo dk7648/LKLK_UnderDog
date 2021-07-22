@@ -60,10 +60,20 @@
         </div>
 
 
-        <div style="text-align: center; margin: 4rem auto">
-             <h3>
-                {% include 'snippets/list_fragment.html' with project_list=object_list %}
-             </h3>
+         <div style="text-align: center; margin: 4rem auto">
+             <h2>
+                 {% for join in join_list %}
+                    {% if target_user == join.user %}
+                        <a href="{% url 'projectapp:detail' pk=join.project.pk %}">
+                            <div class="container" style="margin: 2rem auto">
+                                <img src="{{ join.project.image.url }}" alt=""> <br>
+                                {{ join.project.title }}
+                            </div>
+                        </a>
+                    {% endif %}
+                 {% endfor%}
+<!--             {% include 'snippets/list_fragment.html' with project_list=join_list %}-->
+             </h2>
         </div>
 
     </div>
