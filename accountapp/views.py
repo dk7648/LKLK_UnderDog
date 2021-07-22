@@ -54,9 +54,6 @@ class AccountDeleteView(DeleteView):
     success_url = reverse_lazy('accountapp:login')
     template_name = 'accountapp/delete.html'
 
-def hello(request):
-    return render(request, 'accountapp/hello.html')
-
 
 class AccountJoinView(DetailView, MultipleObjectMixin):
     model = User
