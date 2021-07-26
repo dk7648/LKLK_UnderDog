@@ -24,6 +24,17 @@
 
 </style>
 
+<div>
+    <h3>
+        {{ project.title }}
+    </h3>
+</div>
+<div>
+    <h5>
+        {{ project.content | safe }}
+    </h5>
+</div>
+
 <div class="container">
 
     <img src="{{ project.image.url }}" alt="">
@@ -32,4 +43,10 @@
 
     <img src="{{ project.image3.url }}" alt="">
 
+</div>
+
+<div>
+    <h6>
+        join
+    </h6>
 </div>

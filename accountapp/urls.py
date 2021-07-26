@@ -2,7 +2,7 @@ from django.contrib.auth.views import LogoutView, LoginView
 from django.urls import path
 
 from accountapp.views import AccountCreateView, AccountDetailView, AccountUpdateView, \
-    AccountDeleteView, AccountJoinView  
+    AccountDeleteView, AccountJoinView
 
 app_name = "accountapp"
 

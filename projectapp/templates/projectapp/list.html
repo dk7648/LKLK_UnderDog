@@ -14,25 +14,8 @@
     <div class="container">
        {% for project in project_list %}
       <a href="{% url 'projectapp:detail' pk=project.pk %}">
-        <div>
-            <h3>
-          {{ project.title }}
-          </h3>
-        </div>
-        <div>
-          <h5>
-            {{ project.content | safe }}
-          </h5>
-        </div>
-
-<!--        프로젝트 게시물 사진 3개 include-->
+        <!--        프로젝트 게시물 card include-->
         {% include 'snippets/card.html' with project=project %}
-
-        <div>
-          <h6>
-            join
-          </h6>
-        </div>
       </a>
       <hr>
       {% endfor %}
@@ -43,6 +26,5 @@
     <h1>No Articles YET!</h1>
   </div>
   {% endif %}
-
 
 {% endblock %}
