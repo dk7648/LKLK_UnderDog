@@ -11,10 +11,16 @@
 
         <a href="{% url 'accountapp:detail' pk=target_project.writer.pk %}" >
             <h4>
-                <img src="{{ target_project.writer.profile.image.url }}" alt=""
+<!--            추후 기본이미지를 만들어 프로필 사진이 없을 경우 기본이미지로 출력-->
+                {% if target_project.writer.profile.image %}
+                    <img src="{{ target_project.writer.profile.image.url }}" alt=""
                      style="height: 3rem; width: 3rem; border-radius: 10rem; object-fit: cover;">
+                {% endif %}
 
-                {{ target_project.writer.profile.nickname }}
+<!--                nickname을 등록하지 않은 사용자가 존재할 가능성이 있어 닉네임을 아이디로 수정-->
+<!--                추후 닉네임을 회원가입 시 기본정보로 받은 후 닉네임이 보이도록 수정-->
+<!--                {{ target_project.writer.profile.nickname }}-->
+                {{ target_project.writer.profile.user }}
             </h4>
         </a>
 
