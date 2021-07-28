@@ -35,7 +35,7 @@
 
     <!--        구직 인원, 지원자 수 (-> 구현 전 프로젝트 생성시 지원자 수 추가생성 )-->
 
-    <!--        프로젝트 글쓴이일 경우 수정, 삭제 권한, join 지원자 보기-->
+    <!--        프로젝트 글쓴이일 경우 수정, 삭제 권한, join 지원자 보기 -->
         {% if target_project.writer == user %}
             <a href="{% url 'projectapp:update' pk=target_project.pk %}">
                 <p>Update Project</p>
@@ -45,7 +45,6 @@
             </a>
         <hr>
              <h4>Join List</h4>
-
             <!--        join 한 유저의 정보 받아오기       -->
             {% for join in join_list %} <!-- view.py의 projectDetail 에서 join 과 join_list 따로 받아왔음. -->
                 {% if target_project.pk == join.project.pk %}
@@ -68,6 +67,11 @@
                 </div>
                 {% endif %}
             {% endfor %}
+        <hr>
+            <h4>Team members List</h4>
+
+
+
         {% endif %}
 
 
@@ -89,6 +93,12 @@
         </div>
 
 <!--        추후 join list 팝업으로 띄우기-->
+        <div>
+            <p>프로젝트 모집 인원: {{ target_project.get_personnel_display }}</p>
+            <p>모집한 인원: </p>
+            <p>현재 지원자: </p>
+        </div>
+
 
         <hr>
         <a href="{% url 'home' %}">

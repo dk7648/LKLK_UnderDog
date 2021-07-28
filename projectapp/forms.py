@@ -12,4 +12,4 @@ class ProjectCreationForm(ModelForm):
 
     class Meta:
         model = Project
-        fields = ['title', 'image', 'image2', 'image3', 'project', 'content']
+        fields = ['title', 'image', 'image2', 'image3', 'project', 'content', 'personnel']
