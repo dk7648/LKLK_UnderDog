@@ -55,12 +55,14 @@ INSTALLED_APPS = [
     'profileapp',
     'projectapp',
     'joinapp',
+    'feedapp',
 
     'django.contrib.sites',
     'allauth',
     'allauth.account',  # 가입한 계정 관리
     'allauth.socialaccount',  # 소셜 계정으로 가입한 계정 관리
     'allauth.socialaccount.providers.google',  # 어떤 소셜 서비스를 사용하는지 추가
+    'ckeditor', #ckeditor 추가
 ]
 
 MIDDLEWARE = [
@@ -182,4 +184,18 @@ SOCIALACCOUNT_PROVIDERS = {
             'access_type': 'online',
         }
     }
+}
+
+#ckeditor
+CKEDITOR_CONFIGS = {
+  'default': {
+      'toolbar': 'full',
+      'extraPlugins': ','.join(
+          [
+              'codesnippet',
+          ]
+
+      ),
+      'codeSnippet_theme': 'monokai_sublime',
+  },
 }

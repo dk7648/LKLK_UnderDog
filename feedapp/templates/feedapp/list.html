@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="container"  >
+    {% for post in post_list %}
+        <div  class="detail_page detail_component">
+          <a href="{% url 'feedapp:detail' pk=post.pk%}" class="size4-link">{{post.title}}</a>
+          <div class="date_detail">
+            <div class="text-label big">게시일 :</div>
+            <div class="text-label date">{{post.created_at}}</div>
+            <div class="nav-kit-divider"></div>
+            <div class="text-label big">글쓴이 :</div>
+            <div class="text-label date">{{post.writer}}</div>
+          </div>
+          <div class="paragraph-70">{{post.image | safe }}{{post.content | safe}} ...</div>
+        </div>
+    {% endfor %}
+
+
+</div>
+
+{% endblock %}

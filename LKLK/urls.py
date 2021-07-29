@@ -29,6 +29,7 @@ urlpatterns = [
     path('profiles/', include('profileapp.urls')),
     path('projects/', include('projectapp.urls')),
     path('joins/', include('joinapp.urls')),
+    path('feeds/', include('feedapp.urls')),
 
     path('accounts/', include('allauth.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -17,6 +17,10 @@
             style="margin: 0 0.5rem;">
                 <span>Mypage</span>
             </a>
+            <a href="{% url 'feedapp:list' %}"
+            style="margin: 0 0.5rem;">
+                <span>Feed</span>
+            </a>
             <a href="{% url 'accountapp:logout' %}?next={{ request.path }}"
             style="margin: 0 0.5rem;">
                 <span>logout</span>
