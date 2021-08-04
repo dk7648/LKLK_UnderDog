@@ -8,7 +8,25 @@
        <h1>
            {{target_project.title}}
        </h1>
-
+        <h1>
+            teamapp Test
+            <hr>
+            {{target_project.title}}
+            {{team.project.title}}
+            {{team}}
+            {% for object in team %}
+                {% if object.project.title == target_project.title %}
+                team : {{object}}<br>
+                title : {{object.project.title}}<br>
+                user : {{object.user}}<br>
+                writer : {{object.project.writer}}
+                member1 : {{object.member1}}<br>
+                member2 : {{object.member2}}<br>
+                {% endif %}
+            {% endfor %}
+            <hr>
+            <br><br>
+        </h1>
         <a href="{% url 'accountapp:detail' pk=target_project.writer.pk %}" >
             <h4>
 <!--            추후 기본이미지를 만들어 프로필 사진이 없을 경우 기본이미지로 출력-->
@@ -61,6 +79,11 @@
                             {{ join.user }}
 
 <!--                            지원 수락 거절 만들기 -->
+<!--                            project pk와 user pk를 teamapp으로 전달-->
+                            <a href="{% url 'teamapp:team' %}?project_pk={{ target_project.pk }}&user={{join.user.pk}}"
+                                class="btn btn-primary rounded-pill px-4">
+                                Accept
+                            </a>
 
                         </h4>
                     </a>
@@ -69,9 +92,19 @@
             {% endfor %}
         <hr>
             <h4>Team members List</h4>
+            {% for object in team %}
+                {{object.member1}}<br>
+                {{object.member2}}<br>
+                {{object.member3}}<br>
+                {{object.member4}}<br>
+                {{object.member5}}<br>
+            {% endfor %}
 
-
-
+            <h4>Team SNS</h4>
+            <a href="{% url 'feedapp:list' %}?project_pk={{ target_project.pk }}"
+                class="btn btn-primary rounded-pill px-4">
+                Feeds
+            </a>
         {% endif %}
 
 
