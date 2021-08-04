@@ -101,7 +101,7 @@
             {% endfor %}
 
             <h4>Team SNS</h4>
-            <a href="{% url 'feedapp:list' %}?project_pk={{ target_project.pk }}"
+            <a href="{% url 'feedapp:list' %}?project_pk={{ target_project.pk }}&user_pk={{ user.pk }}"
                 class="btn btn-primary rounded-pill px-4">
                 Feeds
             </a>

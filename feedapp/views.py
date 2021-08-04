@@ -88,13 +88,12 @@ class FeedListView(ListView):
     #    return render(request, "feedapp/list.html", data)
 
     def get(self, request, *args, **kwargs):
-        user = get_object_or_404(User, pk=self.request.GET.get('user_pk'))
         project = get_object_or_404(Project, pk=self.request.GET.get('project_pk'))
-        team = Team.objects.filter(user=user, project=project)
+        team = Team.objects.filter(user=project.writer, project=project)
         if not(team.exists()):
             team = None
 
-        return super(FeedListView, self).get(request, *args, **kwargs, team=team)
+        return super(FeedListView, self).get(request, *args, **kwargs, team=team, project=project)
 
 
     # def get_context_data(self, **kwargs):
