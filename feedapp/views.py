@@ -69,7 +69,6 @@ class FeedListView(ListView, FormMixin):
     context_object_name = 'post_list'
     template_name = 'feedapp/list.html'
     paginate_by = 25
-
     # def get(self, request):
     #     from django.shortcuts import render
     #
@@ -95,7 +94,7 @@ class FeedListView(ListView, FormMixin):
         #if project pk가 없다면 - 전체 출력
         team_list = Team.objects.filter(user=project.writer, project=project)
         feed_list = Feed.objects.filter(project=project)
-        comment_list = Comment.objects.filter(project=project)
+        comment_list = Comment.objects.filter(project=project).order_by("-created_at")
         # if not(team.exists()):
         #     team = None
 

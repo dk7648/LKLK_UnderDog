@@ -18,8 +18,9 @@
 <!--        </div>-->
 <!--    {% endfor %}-->
 
-    <h1> 글쓰기 </h1>
+    <h1> 프로젝트 정보 </h1>
 <!--    list는 이미 필터링 되어 있어서 한번만 돈다.-->
+<!--    프로젝트 정보 -->
     {% for team in team_list %}
         leader : {{team.project.writer}}<br>
         team : {{team.member1}}<br>
@@ -36,24 +37,31 @@
         <img src="{{team.project.image3.url}}"><br>
         <br><hr>
 
-    {% endfor %}
-
-    <!--    list는 이미 필터링 되어 있어서 한번만 돈다.     -->
         {% for comment in comment_list %}
-            {% include 'commentapp/detail.html' with comment=comment %}
+            {% if comment.feed is None %}
+                {% include 'commentapp/detail.html' with comment=comment %}
+            {% endif %}
         {% endfor%}
+
+
         <br><br>
-        <h3>feed!!!</h3>
+        <h3>프로젝트의 각 피드들</h3>
+        <!--    각 피드들-->
         {% for feed in feed_list %}
             제목 : {{feed.title}}  글쓴이 : {{feed.writer}}<hr>
             {{feed.content | safe}}<hr>
-            {% include 'commentapp/create.html' with project=team.project %}
+            {% include 'commentapp/create.html' with project=team.project feed=feed %}
 
-            dkssud<br><br><br>
+            <!--    각 피드의 댓글들     -->
+            {% for comment in comment_list %}
+                {% if comment.feed == feed %}
+                    {% include 'commentapp/detail.html' with comment=comment %}
+                {% endif %}
+            {% endfor%}
         {% endfor %}
         <hr>
 
-
+    {% endfor %}
 
 </div>
 

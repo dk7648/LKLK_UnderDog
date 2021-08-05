@@ -9,6 +9,7 @@ from django.views.generic import CreateView, DeleteView, ListView, DetailView, U
 from commentapp.decorators import comment_ownership_required
 from commentapp.forms import CommentCreationForm
 from commentapp.models import Comment
+from feedapp.models import Feed
 from projectapp.models import Project
 from teamapp.models import Team
 
@@ -24,7 +25,7 @@ class CommentCreateView(CreateView):
     def form_valid(self, form):
         temp_comment = form.save(commit=False)
         temp_comment.project = Project.objects.get(pk=self.request.POST['project_pk'])
-
+        temp_comment.feed = Feed.objects.get(pk=self.request.POST['feed_pk'])
         temp_comment.writer = self.request.user
         temp_comment.save()
         return super().form_valid(form)
